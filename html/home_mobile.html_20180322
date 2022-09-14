@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body div img
+        {
+            padding: 0;
+            margin: 0;
+        }
+        body
+        {
+            height: 100%;
+        }
+        .main
+        {
+            top: 50%;
+            width: 100%;
+
+            height: 640px;
+            margin: 260px 0 0 0;
+        }
+
+        .main img
+        {
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+<div class="main">
+    <img src="image/02_mobile.jpg">
+</div>
+</body>
+</html>

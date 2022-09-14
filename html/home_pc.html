@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="자이에스앤디, 주택개발, 부동산운영관리, 정보통신, Xi옵션등 사업소개 ">
+
+    <title>자이S&D</title>
+
+    <style>
+        body,div,img
+        {
+            padding: 0;
+            margin: 0;
+
+        }
+body{
+overflow:hidden;
+}
+        .main
+        {
+		text-align:center;
+            width: 100%;
+            max-width: 1920px;
+            height: auto;
+            margin: 0 auto !important;
+        }
+
+        .main img
+        {
+		min-width:1440px !important;
+            max-width: 100% !important;
+            max-height: 100% !important;
+        }
+
+    </style>
+</head>
+<body>
+<div class="main">
+<img src="image/grand-open.jpg">
+</div>
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      var width =  $(window).width();
+      var height =  $(window).height();
+
+      $(".main img").css("width",width);
+        $(".main img").css("height",height);
+
+        $(window).resize(function () {
+            var width =  $(window).width();
+            var height =  $(window).height();
+
+            $(".main img").css("width",width);
+            $(".main img").css("height",height);
+
+        });
+    });
+</script>
+
+</html>

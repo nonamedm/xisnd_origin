@@ -1,0 +1,72 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: framework\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-29 10:42+0800\n"
+"PO-Revision-Date: 2017-06-29 11:20+0800\n"
+"Last-Translator: langrisser80 <1229765223@qq.com>\n"
+"Language-Team: Langrisser80 <1229765223@qq.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh\n"
+"X-Generator: Poedit 1.6.7\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: header.php:48
+msgid "ADMIN"
+msgstr "管理后台"
+
+#: header.php:56
+msgid "HOME"
+msgstr "首页"
+
+#: header.php:63
+msgid "Slide"
+msgstr "幻灯片"
+
+#: header.php:68
+msgid "Slide List"
+msgstr "幻灯片列表"
+
+#: header.php:71
+msgid "Add Slide"
+msgstr "添加幻灯片"
+
+#: header.php:77
+msgid "Slide Category"
+msgstr "幻灯片分类"
+
+#: header.php:80
+msgid "Add Slide Category"
+msgstr "添加幻灯片分类"
+
+#: header.php:93
+msgid "Pop Up"
+msgstr "弹窗"
+
+#: header.php:98
+msgid "Pop Up List"
+msgstr "弹窗列表"
+
+#: header.php:101
+msgid "Add Pop Up"
+msgstr "添加弹窗列表"
+
+#: header.php:104
+msgid "Pop Up Category"
+msgstr "弹窗分类"
+
+#: header.php:107
+msgid "Add Pop Up Category"
+msgstr "添加弹窗分类"
+
+#: header.php:143
+msgid "setting"
+msgstr "设置"

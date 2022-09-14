@@ -1,0 +1,48 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Pop_model extends CI_Model {
+
+	public function delete_pop($pop_index)
+	{
+
+		$this->db->delete('pop',array('pop_index'=>$pop_index));
+
+	}
+
+	public function getPopList()
+	{
+
+		$data = $this->db->get('pop')->result_array();
+  		return $data;
+
+	}
+	public function count()
+	{
+		$data = $this->db->get('pop')->result_array();
+		$count = count($data);
+  		return $count;
+	}
+
+	public function check_pop($pop_index)
+	{
+		$data = $this->db->get_where('pop',array('pop_index'=>$pop_index))->row_array();
+		return $data;
+	}
+
+	public function getCategoryPop($category_pop_index)
+	{
+		$data = $this->db->get_where('pop',array('category_pop_index'=>$category_pop_index))->result_array();
+		return $data;
+	}
+
+	public function count_category_pop($category_pop_index)
+	{
+		$data = $this->db->get_where('pop',array('category_pop_index'=>$category_pop_index))->result_array();
+		$count = count($data);
+  		return $count;
+	}
+
+
+
+}

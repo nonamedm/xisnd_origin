@@ -1,0 +1,175 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Pop extends Basic_Controller {
+
+	public function __construct(){
+		parent::__construct();
+		$this->load->model('Pop_model', 'pop');
+		$this->load->model('Category_Pop_model', 'category_pop');
+	}
+
+	public function index()
+	{
+		$pop_list = $this->pop->getPopList();
+
+		$combined_data = "";
+
+		foreach($pop_list as $key => $value):
+
+			    $pop[] = $value;
+
+                $pop_count = $this->pop->count();
+
+				$count[$key]['count'] = $pop_count;
+
+                $combined_data[$key] = array_merge($pop[$key],$count[$key]);
+
+		endforeach;
+
+		
+		if($combined_data){
+			 $this->data['pop_list'] = $combined_data;
+		}else{
+			 $this->data['pop_list'] = array();
+		}
+
+		$this->load->view('pop_list',$this->data);
+
+	}
+	public function add()
+	{
+		$this->data['category_pop_list'] = $this->category_pop->getCategoryPopList();
+		$this->load->view('pop_add',$this->data);
+	}
+	public function insert()
+	{
+		$pop_image = "";
+		if($_FILES['pop_image']['name'] != ""):	
+		$config['upload_path']      = './uploads/pop/'.date('Ymd').'/';
+		if (!file_exists($config['upload_path'] )){
+
+             mkdir($config['upload_path'] , 0777);
+
+        }
+        $config['allowed_types']    = '*';
+        $config['max_size']     = 2048;
+        $config['file_name']    = time() . mt_rand(1000,9999);
+        $this->load->library('upload',$config);
+        $this->upload->do_upload('pop_image');
+        $wrong = $this->upload->display_errors();
+        if($wrong)  
+        {
+            error($wrong);
+        }
+        $info = $this->upload->data();
+        $pop_image = '/'.$config['upload_path'].$info['file_name'];
+        endif;
+        $pop_data = array(
+
+	    'pop_name' => $this->input->post('pop_name'),
+	    'category_pop_index' => $this->input->post('category_pop_index'),
+	    'pop_option' => $this->input->post('pop_option'), 
+        'pop_image' => $pop_image, 
+        'pop_margin_left' => $this->input->post('pop_margin_left'), 
+        'pop_margin_top' => $this->input->post('pop_margin_top'), 
+        'pop_padding_left' => $this->input->post('pop_padding_left'), 
+        'pop_padding_top' => $this->input->post('pop_padding_top'), 
+        'pop_begin_time' => strtotime($this->input->post('pop_begin_time')), 
+        'pop_end_time' => strtotime($this->input->post('pop_end_time')), 
+        'pop_video' => $this->input->post('pop_video'), 
+        'pop_description' => $this->input->post('pop_description'),
+        'pop_created_time' => time()
+
+	    );
+	    $this->db->insert('pop',$pop_data);
+	    success('pop/index','Success');	
+	}
+	public function edit()
+	{
+		$pop_index = $this->uri->segment(3);
+		$this->data['pop'] = $this->pop->check_pop($pop_index);
+		$this->data['category_pop_list'] = $this->category_pop->getCategoryPopList();
+		$this->load->view('pop_edit',$this->data);
+	}
+	public function update()
+	{
+		$pop_image = $this->input->post('pop_image_bak');
+		$pop_index = $this->input->post('pop_index');
+		if($pop_image != ""):
+		if($_FILES['pop_image']['name'] != ""):
+        $config['upload_path']      = './uploads/pop/'.date('Ymd').'/';
+		if (!file_exists($config['upload_path'] )){
+
+             mkdir($config['upload_path'] , 0777);
+
+        }
+        $config['allowed_types']    = '*';
+        $config['max_size']     = 2048;
+        $config['file_name']    = time() . mt_rand(1000,9999);
+        $this->load->library('upload',$config);
+        $this->upload->do_upload('pop_image');
+        $wrong = $this->upload->display_errors();
+        if($wrong)  
+        {
+            error($wrong);
+        }
+        $info = $this->upload->data();
+        $pop_image = '/'.$config['upload_path'].$info['file_name'];
+        endif;
+        endif;
+        $pop_data = array(
+
+	    'pop_name' => $this->input->post('pop_name'),
+	    'category_pop_index' => $this->input->post('category_pop_index'),
+	    'pop_option' => $this->input->post('pop_option'), 
+        'pop_image' => $pop_image, 
+        'pop_margin_left' => $this->input->post('pop_margin_left'), 
+        'pop_margin_top' => $this->input->post('pop_margin_top'), 
+        'pop_padding_left' => $this->input->post('pop_padding_left'), 
+        'pop_padding_top' => $this->input->post('pop_padding_top'), 
+        'pop_begin_time' => strtotime($this->input->post('pop_begin_time')), 
+        'pop_end_time' => strtotime($this->input->post('pop_end_time')), 
+        'pop_video' => $this->input->post('pop_video'), 
+        'pop_description' => $this->input->post('pop_description')
+
+	    );
+	    $this->db->update('pop',$pop_data,array('pop_index'=>$pop_index));
+	    success('pop/index','Success');	
+	}
+	public function remove()
+	{
+		$pop_index = $this->uri->segment(3);
+		$this->pop->delete_pop($pop_index);
+		success('pop/index','Success');
+	}
+    public function category_pop_list()
+    {
+    	$category_pop_index = $this->uri->segment(3);
+    	$pop_list = $this->pop->getCategoryPop($category_pop_index);
+
+		$combined_data = "";
+
+		foreach($pop_list as $key => $value):
+
+			    $pop[] = $value;
+
+                $pop_count = $this->pop->count_category_pop($category_pop_index);
+
+				$count[$key]['count'] = $pop_count;
+
+                $combined_data[$key] = array_merge($pop[$key],$count[$key]);
+
+		endforeach;
+
+		
+		if($combined_data){
+			 $this->data['pop_list'] = $combined_data;
+		}else{
+			 $this->data['pop_list'] = array();
+		}
+
+		$this->load->view('pop_list',$this->data);
+    }
+
+}
